@@ -16,7 +16,7 @@ class MsgWindow extends Component {
                         <h4>{message.username}</h4>
                         <p>{message.text}</p>
                     </div>                        
-                    <span>{message.time.toISOString()}</span>
+                    <span>{message.time}</span>
                 </div>
             )
         })

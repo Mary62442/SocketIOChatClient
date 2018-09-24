@@ -11,13 +11,8 @@ class App extends Component {
       endpoint : "http://localhost:8080/",    
       username: "",
       isLogged: false,
-      messages: [{username:"mary", text:"The prime minister is sticking by her Chequers plan for future co-operation despite European leaders attacking it. She is meeting senior ministers as pressure grows on her to ditch it in favour of a Canada-style trade accord. Hello there!", time: new Date()}, {username:"diego", text:"Hello", time: new Date()}]
-    };
-    
-  }
-
-  componentDidMount() {    
-    
+      messages: []
+    };    
   }
 
   componentWillUnmount() {
@@ -30,38 +25,40 @@ class App extends Component {
       username:usr,
       isLogged:logged
     });   
-    //this.socket = socketIOClient(this.state.endpoint); 
+    this.socket = socketIOClient(this.state.endpoint); 
+    this.socket.on("new message from server", (msg) => {
+        
+      this.setState({
+        messages: [...this.state.messages, msg]
+      });
+      
+    }); 
   };
 
   logOut = () => {
     this.setState({
       username:"",
-      isLogged:false
+      isLogged:false,
+      messages: []
     });
 
-    //this.socket.close()
+    this.socket.close()
   }
 
   sendMessage = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       let newMsg = {username:this.state.username, time: new Date()};
-      newMsg.message = e.target.value; 
+      newMsg.text = e.target.value; 
       e.target.value = "";
+      this.socket.emit("new message from client", newMsg);
+      console.log(newMsg);
     }
-
     else return;
   }
   
 
    render() {   
-
-    if (this.socket) {
-      this.socket.on('change time', (socketTime) => {
-        this.setState({time:socketTime});
-      }); 
-    }
-
 
     const SocketChat = (props) => {    
       if (this.state.isLogged) {
@@ -85,8 +82,7 @@ class App extends Component {
         <div className ="socket-chat">
           <h1>Socket Project</h1>
           <SocketChat />   
-        </div>   
-        
+        </div>          
       </div>
     );
   }
