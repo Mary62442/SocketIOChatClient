@@ -1,0 +1,72 @@
+body {
+    background-color:rosybrown;    
+    color:#2e2e2e;    
+}
+
+.socket-chat {
+    margin:0 auto;
+    width:40%;
+    box-shadow:0 0 10px rgba(0,0,0,0.3);
+    padding:2em 1em;
+    text-align:center;
+    background-color:white;
+}
+
+.user-welcome {
+    width:450px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.user-welcome > h2 {
+    margin:0;
+    padding:0.2em 0;    
+}
+
+
+
+.socket-chat textarea {
+    width:450px;
+    resize:none;
+    border-radius:3px;
+}
+
+
+.all-msgs {
+    padding: 2em 0;
+}
+
+.msg-container {
+    width:450px;  
+    margin: 0 auto;  
+    text-align:left;
+    padding: 1em 0;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+
+.single-msg {    
+    display:flex;    
+    width:100%;
+    align-items: flex-start;
+}
+
+.single-msg > h4 {
+    width:100px;
+    margin:0;     
+    padding:0; 
+    clear:right;
+}
+
+.single-msg > p {
+    margin:0;   
+    padding:0;  
+    width:350px;  
+}
+.msg-container span {  
+    float:right;  
+    color:rgba(0,0,0,0.5);
+    font-size:0.8em;
+}

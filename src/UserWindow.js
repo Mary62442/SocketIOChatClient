@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 
 class UserWindow extends Component {
     constructor(props) {
